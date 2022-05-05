@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>Appointment</title>
+    <style>
+        body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: rgb(62, 244, 250);
+        }
+        
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Appointment Booking</h2>
+    <form>
+        <div class="form">
+            <div class="patient">
+                <label for="patient-name">
+                Patient Name
+                </label>
+                <div>
+                    <input type="text" id="patient-name" class="form-control" placeholder="Name" required>
+                </div>
+            </div>
+            <!---->
+            <div class="contact">
+                <label for="contact">
+                Contact
+                </label>
+                <div>
+                    <input type="tel" id="contact" class="form-control" placeholder="123" required>
+                </div>
+            </div>
+            <!---->
+            <div class="date">
+                <label for="date">
+        Date
+      </label>
+                <div>
+                    <input type="date" id="date" class="form-control">
+                </div>
+            </div>
+            <!---->
+            <div class="time">
+                <label class="time">
+         Time
+      </label>
+                <div>
+                    <input type="time" id="time" class="form-control">
+                </div>
+            </div>
+            <!---->
+            <div class="symptoms">
+                <label for="symptoms">
+                Symptoms
+                </label>
+                <div>
+                    <textarea id="symptoms" class="form-control" required></textarea>
+                </div>
+            </div>
+            <!---->
+            <div class="button">
+                <div>
+                    <button type="submit" class="btn btn-form">
+              Confirm
+          </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

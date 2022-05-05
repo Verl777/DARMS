@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Activity</title>
+    <style></style>
+</head>
+
+<body><br><br>
+    <form method="post" action="generateprescription.php"><b>PATIENT ACTIVITY :<br><br></b>
+        <table width:="50%">
+            <tbody>
+                <tr>
+                    <td>Patient Name: <br></td>
+                    <td><input name="doc_name" type="text"><br></td>
+                </tr>
+                <tr>
+                    <td>Patient ID: <br></td>
+                    <td><input name="id" type="text"><br></td>
+                </tr>
+                <tr>
+                    <td>Date :<br></td>
+                    <td><input type="date" id="date"><br></td>
+                </tr>
+                <tr>
+                    <td>Patient Activity:<br></td>
+                    <td><select><option value="activity">Activity</option><option value="Col">Coloring</option><option value="Journ">Journaling</option><option value="Paint">Painting</option><option value="Music">Listening to Music</option><option value="Collage">Scrapbooking/Collaging</option><option value="Knit">Knitting</option><option value="Game">PlayGames</option><option value="Mandala">Draw a Mandala</option><option value="walk">Go for a walk</option><option value="cook">Cooking</option><option value="Medit">Meditate</option><option value="puzzle">Crossword puzzle/Sudoku</option><option value="write">Write a letter</option><option value="list">Write a gratitude list</option><option value="Orgami">Origami</option><option value="read">Read a book</option><option value="watch">Watch</option><option value="games">Boardgames</option></select></td>
+                </tr>
+                <tr>
+                    <td>Remarks :<br></td>
+                    <td><textarea cols="30" rows="3" name="instructions"></textarea></td>
+                </tr>
+            </tbody>
+        </table><br><br><input name="submit" value="Confirm" type="submit">&nbsp; &nbsp;
+        <big><big><br></big></big>
+    </form>
+</body>
+
+</html>

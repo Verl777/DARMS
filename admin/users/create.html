@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="logo.png" type="image/gif" sizes="16x16">
+
+    <!-- Custom Styling -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!-- Admin Styling -->
+    <link rel="stylesheet" href="../../css/admin.css">
+
+    <title>Admin Section - Add User</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../logo.png" alt="Logo" class="avatar">
+            <h1 class="logo-text"><span>DARMS</span>Management</h1>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li>
+                <a href="#">
+                    <i class="fa fa-user"></i> DARMS
+                    <i class="fa fa-chevron-down" style="font-size: .8em;"></i>
+                </a>
+                <ul>
+                    <li><a href="#" class="logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Admin Page Wrapper -->
+    <div class="admin-wrapper">
+
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <ul>
+                <li><a href="../posts/index.html">Manage Patients</a></li>
+                <li><a href="index.html">Manage Users</a></li>
+            </ul>
+        </div>
+        <!-- // Left Sidebar -->
+
+
+        <!-- Admin Content -->
+        <div class="admin-content">
+            <div class="button-group">
+                <a href="create.html" class="btn btn-big">Add User</a>
+                <a href="index.html" class="btn btn-big">Manage Users</a>
+            </div>
+
+
+            <div class="content">
+
+                <h2 class="page-title"><b>Add User</b></h2>
+
+                <form action="create.html" method="post">
+                    <div>
+                        <label>Username</label>
+                        <input type="text" name="username" class="text-input">
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email" class="text-input">
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" class="text-input">
+                    </div>
+                    <div>
+                        <label>Password Confirmation</label>
+                        <input type="password" name="passwordConf" class="text-input">
+                    </div>
+                    <div>
+                        <label>Role</label>
+                        <select name="role" class="text-input">
+                                <option value=" Doctor">Doctor</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Therapist">Therapist</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-big">Add User</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- // Admin Content -->
+
+    </div>
+    <!-- // Page Wrapper -->
+
+
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Ckeditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+    <!-- Custom Script -->
+    <script src="../../js/scripts.js"></script>
+
+</body>
+
+</html>
