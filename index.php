@@ -20,17 +20,23 @@
         <h1>DARMS Login</h1>
         <form action="index.php" method="post">
             <p>Username</p>
-            <input type="text" required name="username" placeholder="Enter username here">
+            <input type="text" name="username" placeholder="Enter username here">
             <p>Password</p>
-            <input type="password" name="password" required placeholder="Enter Password here">
-            <input type="submit" name="submit" value="Login">
-            <a href="#">Forgot Password?</a>
+            <input type="password" name="password" placeholder="Enter Password here">
+            <select class="select-user" name="user_type" id="select">
+                <option>Select System User</option>
+                <option value="receptionist">Receptionist</option>
+                <option value="nurse">Nurse</option>
+                <option value="doctor">Doctor</option>
+                <option value="therapist">Therapist</option>
+                <option value="admin">Admin</option>
+            </select><br />
+            <button class="button" name="submit">LOGIN</button>
 
             <div class="signup">Don't have an account?
-                <label for="flip"><a href="signup.php">Sign Up</a></label>
+                <h1><a id="signup" href="signup.php">Sign Up</a></h1>
             </div>
-    </div>
-    </form>
+        </form>
 
     </div>
 

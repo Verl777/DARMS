@@ -1,7 +1,8 @@
+<?php include "includes/db.php"; ?>
+<?php include "includes/functions.php"; ?>
 <html>
-
 <head>
-    <title>Admission</title>
+    <title>Activity</title>
     <style>
         * {
             background-color: rgb(213, 223, 220);
@@ -11,7 +12,7 @@
             font-family: Calibri, Helvetica, sans-serif;
         }
         
-        .admission {
+        .activity {
             text-align: center;
         }
         
@@ -21,7 +22,7 @@
         }
         
         input[type=text],
-        input[type=textarea],
+        select,
         input[type=date],
         textarea {
             width: 100%;
@@ -39,9 +40,8 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            text-align: center;
-            border-radius: 10px;
-            display: inline-block;
+            width: 100%;
+            opacity: 0.9;
         }
         
         .submit-button:hover {
@@ -51,9 +51,9 @@
     </style>
 </head>
 
-<body style="background-image: url(images/background4.jpg);"><br><br>
+<body><br><br>
     <form method="post" action="generateprescription.php">
-        <h1 class="admission">PATIENT ADMISSION</h1><br>
+        <h1 class="activity">PATIENT ACTIVITY :<br><br></h1>
         <table width:="50%">
             <tbody>
                 <tr>
@@ -65,24 +65,19 @@
                     <td><input name="id" type="text"><br></td>
                 </tr>
                 <tr>
-                    <td class="table-d">Date of Admittance :<br></td>
+                    <td class="table-d">Date :<br></td>
                     <td><input type="date" id="date"><br></td>
                 </tr>
                 <tr>
-                    <td class="table-d">Reason for Admittance :<br></td>
-                    <td><textarea cols="30" rows="3" name="instructions"></textarea></td>
+                    <td class="table-d">Patient Activity:<br></td>
+                    <td><select><option value="activity">Activity</option><option value="Col">Coloring</option><option value="Journ">Journaling</option><option value="Paint">Painting</option><option value="Music">Listening to Music</option><option value="Collage">Scrapbooking/Collaging</option><option value="Knit">Knitting</option><option value="Game">PlayGames</option><option value="Mandala">Draw a Mandala</option><option value="walk">Go for a walk</option><option value="cook">Cooking</option><option value="Medit">Meditate</option><option value="puzzle">Crossword puzzle/Sudoku</option><option value="write">Write a letter</option><option value="list">Write a gratitude list</option><option value="Orgami">Origami</option><option value="read">Read a book</option><option value="watch">Watch</option><option value="games">Boardgames</option></select></td>
                 </tr>
                 <tr>
-                    <td class="table-d">Diagnosis of Admittance :<br></td>
-                    <td><textarea cols="30" rows="3" name="instructions"></textarea></td>
-                </tr>
-                <tr>
-                    <td class="table-d">Description of treatment to be taken :<br></td>
+                    <td class="table-d"> Remarks :<br></td>
                     <td><textarea cols="30" rows="3" name="instructions"></textarea></td>
                 </tr>
             </tbody>
-        </table><br><br><input name="submit" class="submit-button" value="Generate Admission Form" type="submit">&nbsp; &nbsp;
-        <input name="reset" class="submit-button" value="RESET" type="reset"><br>
+        </table><br><br><input name="submit" class="submit-button" value="Confirm" type="submit">
     </form>
 </body>
 

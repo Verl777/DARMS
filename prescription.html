@@ -1,7 +1,53 @@
 <html>
 
 <head>
-    <title></title>
+    <title>Prescribtion</title>
+    <style>
+        * {
+            background-color: rgb(213, 223, 220);
+        }
+        
+        body {
+            font-family: Calibri, Helvetica, sans-serif;
+        }
+        
+        .prescription {
+            text-align: center;
+        }
+        
+        .table-d {
+            font-weight: 700;
+            width: 20%;
+        }
+        
+        input[type=text],
+        input[type=date],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+        
+        .submit-button {
+            background-color: #3779f5;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .submit-button:hover {
+            opacity: 1;
+            background-color: blue;
+        }
+    </style>
 
 </head>
 
@@ -10,31 +56,31 @@
 
     <br>
 
-    <form method="post" action="generateprescription.php"><big><big>PRESCRIPTION :<br>
-  <br>
-  </big></big>
+    <form method="post" action="generateprescription.php">
+        <h1 class="prescription">PRESCRIPTION </h1>
+        <br>
         <table width:="50%">
             <tbody>
                 <tr>
-                    <td>Doctor Name : <br>
+                    <td class="table-d">Doctor Name : <br>
                     </td>
                     <td><input name="doc_name" type="text"><br>
                     </td>
                 </tr>
                 <tr>
-                    <td>Patient ID : <br>
+                    <td class="table-d">Patient ID : <br>
                     </td>
                     <td><input name="id" type="text"><br>
                     </td>
                 </tr>
                 <tr>
-                    <td>Medicine : <br>
+                    <td class="table-d">Medicine : <br>
                     </td>
                     <td><textarea cols="30" rows="3" name="medicine"></textarea><br>
                     </td>
                 </tr>
                 <tr>
-                    <td>Dosage : <br>
+                    <td class="table-d">Dosage : <br>
                     </td>
                     <td>
                         <input name="dose" type="checkbox"> Morning<br>
@@ -43,13 +89,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Diagnosis :<br>
+                    <td class="table-d">Diagnosis :<br>
                     </td>
                     <td><textarea cols="30" rows="3" name="diagnosis"></textarea><br>
                     </td>
                 </tr>
                 <tr>
-                    <td>Additional Instructions :<br>
+                    <td class="table-d">Additional Instructions :<br>
                     </td>
                     <td><textarea cols="30" rows="3" name="instructions"></textarea> </td>
                 </tr>
@@ -57,8 +103,7 @@
         </table>
         <br>
         <br>
-        <input name="submit" value="Generate Prescription" type="submit">&nbsp; &nbsp; <input name="reset" value="RESET" type="reset"> <big><big><br>
-  </big></big>
+        <input name="submit" class="submit-button" value="Generate Prescription" type="submit">&nbsp; &nbsp; <input name="reset" class="submit-button" value="RESET" type="reset"><br>
     </form>
 
 </body>

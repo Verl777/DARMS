@@ -1,74 +1,52 @@
-$(document).ready(function() {
-    $(".menu-toggle").on("click", function() {
-        $(".nav").toggleClass("showing");
-        $(".nav ul").toggleClass("showing");
-    });
+//Validating
 
-    $(".post-wrapper").slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        nextArrow: $(".next"),
-        prevArrow: $(".prev"),
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ]
-    });
-});
+function validateControls() {
 
-ClassicEditor.create(document.querySelector("#body"), {
-    toolbar: [
-        "heading",
-        "|",
-        "bold",
-        "italic",
-        "link",
-        "bulletedList",
-        "numberedList",
-        "blockQuote"
-    ],
-    heading: {
-        options: [
-            { model: "paragraph", title: "Paragraph", class: "ck-heading_paragraph" },
-            {
-                model: "heading1",
-                view: "h1",
-                title: "Heading 1",
-                class: "ck-heading_heading1"
-            },
-            {
-                model: "heading2",
-                view: "h2",
-                title: "Heading 2",
-                class: "ck-heading_heading2"
-            }
-        ]
+    //Email
+    var email = document.getElementById("email");
+    var format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.value == "" || !format.test(email.value)) {
+        window.alert("Email is not valid! Please enter a valid email");
+        email.focus();
+        return false;
     }
-}).catch(error => {
-    console.log(error);
-});
+
+    //Password
+    var password = document.getElementById("password_1")
+    var Chars = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    if (password.value == "" || !Chars.test(password.value)) {
+        window.alert("Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.");
+        password.focus();
+        return false;
+    }
+    //Confirmation ofpassword_1
+    var confirmpassword = document.getElementById("password_2")
+    if (confirmpassword.value !== password.value) {
+        window.alert("Password details do not match.");
+        password.focus();
+        return false;
+    }
+    //Fullnames
+    var firstname = document.getElementById("fullname")
+    var letters = /^[A-Za-z]+$/;
+    if (firstname.value == "" || !letters.test(firstname.value)) {
+        window.alert("Please enter your full names, no special characters required");
+        firstname.focus();
+        return false;
+    }
+    //Username validation
+    var middlename = document.getElementById("username")
+    if (middlename.value == "" || !letters.test(middlename.value)) {
+        window.alert("Please enter your username");
+        middlename.focus();
+        return false;
+    }
+    //phonenumber
+    var phonenumber = document.getElementById("phonenumber")
+    if (phonenumber.value == "") {
+        window.alert("please enter your mobile number");
+        phonenumber.focus();
+        return false;
+    }
+
+}

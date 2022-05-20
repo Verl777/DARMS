@@ -48,6 +48,7 @@
             padding: .7rem 1.3rem;
             margin: 3px;
             line-height: 1.3rem;
+            float: right;
         }
         
         .btn:hover {
