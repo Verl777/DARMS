@@ -98,7 +98,7 @@
             </div>
             <div>
                 <label for="appt">Time</label>
-                <input type="text" id="appt" name="time">
+                <input type="time" id="appt" name="time">
             </div>
             <!---->
             <!--<div class="time">

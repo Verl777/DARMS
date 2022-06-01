@@ -4,5 +4,6 @@
     <!-- content area -->
     <div class="article">
         <h1>Welcome to the Nurses Dashboard</h1>
+        <img src="" alt="">
     </div>
     <?php include "includes/footer.php"; ?>

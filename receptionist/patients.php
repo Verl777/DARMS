@@ -75,8 +75,8 @@
                 echo "<td>{$guardian}</td>";
                 echo "<td>{$patient_address}</td>";
                 echo "<td>{$createdat}</td>";
-                echo "<td><a class='edit' href='edit_patient.php?edit={$patient_id}'>Edit</a></td>";
-                echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
+                echo "<td><a class='edit' href='edit_patient.php?edit={$patient_id}'>Update</a></td>";
+                //echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
                 echo "</tr>";
             }
             ?>

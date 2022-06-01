@@ -3,6 +3,6 @@
     <?php include "includes/sidebar.php"; ?>
     <!-- content area -->
     <div class="article">
-        <h1>Welcome to the Doctors' Dashboard</h1>
+        <h1>Welcome to Doctors' Dashboard</h1>
     </div>
     <?php include "includes/footer.php"; ?>

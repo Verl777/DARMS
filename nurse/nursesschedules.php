@@ -1,32 +1,47 @@
-<?php include "includes/receptionist_functions.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 <?php include "includes/sidebar.php"; ?>
 <!-- content area -->
 <div class="article">
     <style>
+        .schedule{
+            background-color: #3498DB ;
+            padding: 5px;
+            margin-bottom: 5px;
+            margin-left: 5px;
+            border-radius: 10px;
+            
+        }
+        .schedule a{
+            text-decoration: none;
+        }
+        .schedule:hover{
+            background-color: #515A5A ;
+            color:#fff;
+        }
+        
         #titleoftable {
             text-align: center;
             margin: auto;
         }
 
-        #appointments {
+        #schedules {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-        #appointments td,
-        #appointments th {
+        #schedules td,
+        #schedules th {
             border: 1px solid #ddd;
             padding: 8px;
         }
 
-        #appointments tr:hover {
+        #schedules tr:hover {
             background-color: #ddd;
         }
 
-        #appointments th {
+        #schedules th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
@@ -34,42 +49,40 @@
             color: white;
         }
     </style>
-    <h1 id="titleoftable">Appointments</h1>
-    <table id="appointments">
+    <h1 id="titleoftable">Nurse Schedules</h1>
+    <button class="schedule"><a href="newschedule.php">New Schedule</a></button>
+    <table id="schedules">
         <thead>
             <th>OrderNo</th>
-            <th>Appointmentid</th>
-            <th>Nurseid</th>
-            <th>Patientid</th>
-            <th>Appointmentdate</th>
-            <th>Appointmenttime</th>
-            <th>Createdat</th>
+            <th>Nurse_id</th>
+            <th>Appointment_date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Date</th>
             <th colspan="2">Action</th>
         </thead>
         <tbody>
             <?php
             $db = mysqli_connect('localhost', 'root', '', 'darms');
-            $query = "SELECT * FROM appointment";
-            $select_all_appointments = mysqli_query($db, $query);
+            $query = "SELECT * FROM nurseschedule";
+            $select_all_nurses = mysqli_query($db, $query);
             $i = 0;
-            while ($row = mysqli_fetch_assoc($select_all_appointments)) {
-                $appointment_id = $row['appointment_id'];
+            while ($row = mysqli_fetch_assoc($select_all_nurses)) {
                 $nurse_id = $row['nurse_id'];
-                $patient_id = $row['patient_id'];
-                $appointment_date = $row['appointment_date'];
-                $appointment_time = $row['appointment_time'];
+                $app_date = $row['app_date'];
+                $app_time = $row['app_time'];
+                $nurse_status = $row['nurse_status'];
                 $createdat = $row['createdat'];
                 $i++;
                 echo "<tr>";
                 echo "<td>{$i}</td>";
-                echo "<td>{$appointment_id}</td>";
                 echo "<td>{$nurse_id}</td>";
-                echo "<td>{$patient_id}</td>";
-                echo "<td>{$appointment_date}</td>";
-                echo "<td>{$appointment_time}</td>";
+                echo "<td>{$app_date}</td>";
+                echo "<td>{$app_time}</td>";
+                echo "<td>{$nurse_status}</td>";
                 echo "<td>{$createdat}</td>";
-                echo "<td><a class='edit' href='appointment.php?edit={$appointment_id}'>Update</a></td>";
-                //echo "<td><a class='delete' href='appointments.php?delete={$appointment_id}'>Delete</a></td>";
+                echo "<td><a class='edit' href='appointment.php?edit={$nurse_id}'>Update</a></td>";
+                echo "<td><a class='delete' href='appointments.php?delete={$nurse_id}'>Delete</a></td>";
                 echo "</tr>";
             }
             ?>
@@ -79,7 +92,7 @@
     // delete appointment details
     if (isset($_GET['delete'])) {
         $patient = $_GET['delete'];
-        $query = "DELETE FROM appointment WHERE appointment_id = {$appointment} ";
+        $query = "DELETE FROM nurseschedule WHERE nurse_id = {$nurseschedule} ";
         $delete_query = mysqli_query($db, $query);
         // header("Location: appointments.php");
     }

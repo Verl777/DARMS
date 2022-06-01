@@ -19,6 +19,7 @@ function register()
     $password_2 = $_POST['password_2'];
     $user_role = $_POST['user_role'];
     $gender = $_POST['gender'];
+    $status = $_POST['status'];
 
     // validation 
 
@@ -51,6 +52,9 @@ function register()
     if (empty($gender)) {
         array_push($errors, "Gender required");
     }
+    if (empty($status)) {
+        array_push($errors, "status required");
+    }
 
     // register user if there are no errors in the form
     if (count($errors) == 0) {
@@ -58,8 +62,8 @@ function register()
         $password = md5($password_1); //encrypt the password before saving in the database
         // insert receptionist
         if ($user_role == "receptionist") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender')";
+            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
+        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
             mysqli_query($connection, $query);
 
             // get id of the created user
@@ -71,8 +75,8 @@ function register()
         }
         // insert doctor
         if ($user_role == "doctor") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender')";
+            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
+        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
             mysqli_query($connection, $query);
 
             // get id of the created user
@@ -80,12 +84,12 @@ function register()
 
             $_SESSION['user'] = getDoctorById($logged_in_user_id); // put logged in user in session
             $_SESSION['success']  = "You are now logged in";
-            header('location: doctors/dashboard.php');
+            header('location: doctor/dashboard.php');
         }
         // insert therapist
         if ($user_role == "therapist") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender')";
+            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
+        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
             mysqli_query($connection, $query);
 
             // get id of the created user
@@ -96,8 +100,8 @@ function register()
             header('location: therapist/dashboard.php');
         }
         if ($user_role == "nurse") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender) 
-            VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender')";
+            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
+            VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
             mysqli_query($connection, $query);
 
             // get id of the created user
