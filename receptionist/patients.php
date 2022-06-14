@@ -33,6 +33,13 @@
             background-color: #899499;
             color: white;
         }
+        .edit{
+            background:#10AFEF ;
+            color: #fff;
+            padding: 5px;
+            text-decoration:none ;
+            border-radius: 5px;
+        }
     </style>
     <h1 id="titleoftable">Patients</h1>
     <table id="patients">
@@ -50,7 +57,7 @@
         </thead>
         <tbody>
             <?php
-            $db = mysqli_connect('localhost', 'root', '', 'darms');
+            $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
             $query = "SELECT * FROM patient";
             $select_all_patients = mysqli_query($db, $query);
             $i = 0;

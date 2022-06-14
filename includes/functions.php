@@ -1,16 +1,35 @@
 <?php
-// include('db.php');
+
+// starting the session
+// can be able to store values into session and use them globally
+session_start();
+
+// connect to database
+$db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+
+// variable declaration
+$email    = "";
 $username = "";
-$email = "";
-$errors = array();
+//check functions of arrays in php
+$errors   = array();
+// $user_type    = "";
 
 
+// call the register() function if register_btn is clicked
 if (isset($_POST['register'])) {
     register();
 }
+
+// REGISTER USER
 function register()
 {
-    $connection = mysqli_connect('localhost', 'root', '', 'darms');
+    // call these variables with the global keyword to make them available in function
+    global $db, $errors, $email, $username;
+
+    // receive all input values from the form. Call the e() function
+    // research on escape functions
+    // defined below to escape form values
+    // research on global $_POST
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -21,137 +40,131 @@ function register()
     $gender = $_POST['gender'];
     $status = $_POST['status'];
 
-    // validation 
-
+    // form validation: ensure that the form is correctly filled
     if (empty($fullname)) {
-        array_push($errors, "Fullname required");
+        array_push($errors, "Fullname is required");
     }
-
     if (empty($username)) {
-        array_push($errors, "Username required");
+        array_push($errors, "Username is required");
     }
-
     if (empty($email)) {
-        array_push($errors, "Email required");
+        array_push($errors, "Email is required");
     }
-
     if (empty($phone_number)) {
-        array_push($errors, "Mobile required");
+        array_push($errors, "Phonenumber is required");
     }
-
     if (empty($password_1)) {
-        array_push($errors, "Password required");
+        array_push($errors, "Password is required");
     }
 
-    if (empty($password_1 != $password_2)) {
+    if ($password_1 != $password_2) {
         array_push($errors, "The two passwords do not match");
     }
     if (empty($user_role)) {
-        array_push($errors, "Role required");
+        array_push($errors, "Userrole is required");
     }
     if (empty($gender)) {
-        array_push($errors, "Gender required");
+        array_push($errors, "Gender is required");
     }
     if (empty($status)) {
-        array_push($errors, "status required");
+        array_push($errors, "Status is required");
     }
 
     // register user if there are no errors in the form
     if (count($errors) == 0) {
-        // global $connection;
         $password = md5($password_1); //encrypt the password before saving in the database
         // insert receptionist
         if ($user_role == "receptionist") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
-            mysqli_query($connection, $query);
+            $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
+			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
+            mysqli_query($db, $query);
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($connection);
+            $logged_in_user_id = mysqli_insert_id($db);
 
             $_SESSION['user'] = getReceptionistById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You are now logged in";
+            $_SESSION['success']  = "You have successfully logged in as a receptionist!";
             header('location: receptionist/dashboard.php');
+        }
+        // insert nurse
+        if ($user_role == "nurse") {
+            $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
+			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
+            mysqli_query($db, $query);
+
+            // get id of the created user
+            $logged_in_user_id = mysqli_insert_id($db);
+
+            $_SESSION['user'] = getNurseById($logged_in_user_id); // put logged in user in session
+            $_SESSION['success']  = "You have successfully logged in as a nurse!";
+            header('location: nurse/dashboard.php');
         }
         // insert doctor
         if ($user_role == "doctor") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
-            mysqli_query($connection, $query);
+            $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
+			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
+            mysqli_query($db, $query);
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($connection);
+            $logged_in_user_id = mysqli_insert_id($db);
 
             $_SESSION['user'] = getDoctorById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You are now logged in";
+            $_SESSION['success']  = "You have successfully logged in as a doctor!";
             header('location: doctor/dashboard.php');
         }
-        // insert therapist
+        // inserting the therapist
         if ($user_role == "therapist") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
-        VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
-            mysqli_query($connection, $query);
+            $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
+			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
+            mysqli_query($db, $query);
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($connection);
+            $logged_in_user_id = mysqli_insert_id($db);
 
             $_SESSION['user'] = getTherapistById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You are now logged in";
+            $_SESSION['success']  = "You have successfully logged in as a therapist!";
             header('location: therapist/dashboard.php');
-        }
-        if ($user_role == "nurse") {
-            $query = "INSERT INTO users (fullname, user_name, user_mobile, user_email, user_password, createdat, user_role, gender,status) 
-            VALUES('$fullname', '$username', '$phone_number', '$email', '$password', now(), '$user_role', '$gender','$status')";
-            mysqli_query($connection, $query);
-
-            // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($connection);
-
-            $_SESSION['user'] = getNurseById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You are now logged in";
-            header('location: nurse/dashboard.php');
         }
     }
 }
 
 // return user array from their id
-// get receptionist id
+// get userby  id
 function getReceptionistById($id)
 {
-    global $connection;
+    global $db;
     $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($connection, $query);
+    $result = mysqli_query($db, $query);
 
     $user = mysqli_fetch_assoc($result);
     return $user;
 }
-// get doctor id
-function getDoctorById($id)
-{
-    global $connection;
-    $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($connection, $query);
-
-    $user = mysqli_fetch_assoc($result);
-    return $user;
-}
-// get therapist id
-function getTherapistById($id)
-{
-    global $connection;
-    $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($connection, $query);
-
-    $user = mysqli_fetch_assoc($result);
-    return $user;
-}
-
-
+//get  nurse by id
 function getNurseById($id)
 {
-    global $connection;
+    global $db;
     $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($connection, $query);
+    $result = mysqli_query($db, $query);
+
+    $user = mysqli_fetch_assoc($result);
+    return $user;
+}
+//get doctor by id
+function getDoctorById($id)
+{
+    global $db;
+    $query = "SELECT * FROM users WHERE user_id=" . $id;
+    $result = mysqli_query($db, $query);
+
+    $user = mysqli_fetch_assoc($result);
+    return $user;
+}
+//get  therapist by id
+function getTherapistById($id)
+{
+    global $db;
+    $query = "SELECT * FROM users WHERE user_id=" . $id;
+    $result = mysqli_query($db, $query);
 
     $user = mysqli_fetch_assoc($result);
     return $user;
@@ -160,8 +173,8 @@ function getNurseById($id)
 // escape string
 function e($val)
 {
-    global $connection;
-    return mysqli_real_escape_string($connection, trim($val));
+    global $db;
+    return mysqli_real_escape_string($db, trim($val));
 }
 
 function display_error()
@@ -169,7 +182,7 @@ function display_error()
     global $errors;
 
     if (count($errors) > 0) {
-        echo '<div class="error">';
+        echo '<div class="error" style="color:#DB1120;font-weight:bold;">';
         foreach ($errors as $error) {
             echo $error . '<br>';
         }
@@ -201,7 +214,7 @@ if (isset($_POST['submit'])) {
 // LOGIN USER
 function login()
 {
-    global $connection, $username, $errors;
+    global $db, $username, $errors;
 
     // grap form values
     // escape function filters data to be inserted securely inside the db
@@ -223,74 +236,109 @@ function login()
     // attempt login if no errors on form
     if (count($errors) == 0) {
         $password = md5($password);
-        // // login admin
-        // $query = "SELECT * FROM admin WHERE user_name='$username' AND password='$password' LIMIT 1";
-        // $results = mysqli_query($connection, $query);
-        // if (mysqli_num_rows($results) == 1) {
-        //     $logged_in_user = mysqli_fetch_assoc($results);
-        //     $_SESSION['user'] = $logged_in_user;
-        //     $_SESSION['success']  = "You are now logged in";
-        //     header('location: admin/dashboard.php');
-        // } else {
-        //     array_push($errors, "Wrong email/password combination");
-        // }
-        // login receptionist
-        if ($user_role == "receptionist") {
+        // login admin
+        if ($user_role == "admin") {
             $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
-            $results = mysqli_query($connection, $query);
+            $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 1) {
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
-                $_SESSION['success']  = "You are now logged in";
+                $_SESSION['success']  = "You are now logged in as an Administrator!";
+                header('location: admin/dashboard.php');
+            } else {
+                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
+            }
+        }
+        // login receptionist
+        if ($user_role == "receptionist") {
+            $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
+            $results = mysqli_query($db, $query);
+            if (mysqli_num_rows($results) == 1) {
+                $logged_in_user = mysqli_fetch_assoc($results);
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success']  = "Successfully logged in as a receptionist!";
                 header('location: receptionist/dashboard.php');
             } else {
-                array_push($errors, "Wrong email/password combination");
+                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
+            }
+        }
+        // login nurse
+        if ($user_role == "nurse") {
+            $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
+            $results = mysqli_query($db, $query);
+            if (mysqli_num_rows($results) == 1) {
+                $logged_in_user = mysqli_fetch_assoc($results);
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success']  = "You have successfully logged in as a nurse";
+                header('location: nurse/dashboard.php');
+            } else {
+                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
         }
         // login doctor
         if ($user_role == "doctor") {
             $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
-            $results = mysqli_query($connection, $query);
+            $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 1) {
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
-                $_SESSION['success']  = "You are now logged in";
+                $_SESSION['success']  = "You are successfully logged in!";
                 header('location: doctor/dashboard.php');
             } else {
-                array_push($errors, "Wrong email/password combination");
+                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
         }
         // login therapist
         if ($user_role == "therapist") {
             $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
-            $results = mysqli_query($connection, $query);
+            $results = mysqli_query($db, $query);
             if (mysqli_num_rows($results) == 1) {
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "You are now logged in";
                 header('location: therapist/dashboard.php');
             } else {
-                array_push($errors, "Wrong email/password combination");
-            }
-        }
-        //login nurse
-        if ($user_role == "nurse") {
-            $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
-            $results = mysqli_query($connection, $query);
-            if (mysqli_num_rows($results) == 1) {
-                $logged_in_user = mysqli_fetch_assoc($results);
-                $_SESSION['user'] = $logged_in_user;
-                $_SESSION['success']  = "You are now logged in";
-                header('location: nurse/dashboard.php');
-            } else {
-                array_push($errors, "Wrong email/password combination");
+                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
         }
     }
 }
+function isReceptionist()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_role'] == 'receptionist') {
+        return true;
+    } else {
+        return false;
+    }
+}
+function isNurse()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_role'] == 'nurse') {
+        return true;
+    } else {
+        return false;
+    }
+}
+function isTherapist()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_role'] == 'therapist') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isDoctor()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_role'] == 'doctor') {
+        return true;
+    } else {
+        return false;
+    }
+}
 function isAdmin()
 {
-    if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'admin') {
+    if (isset($_SESSION['user']) && $_SESSION['user']['user_role'] == 'admin') {
         return true;
     } else {
         return false;

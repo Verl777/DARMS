@@ -19,7 +19,7 @@
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">Full Name</span>
-                        <input type="text" onclick="fullnameValidate()" name="fullname" id="fullname" placeholder="Enter your name">
+                        <input type="text" name="fullname" id="fullname" placeholder="Enter your name">
                     </div>
                     <div class="input-box">
                         <span class="details">Username</span>
@@ -45,7 +45,7 @@
                         <span class="details">Userrole :</span>
 
                         <select class="user_role" name="user_role" id="user_role">
-                            <option value="role">Role</option>
+                            <option value="">Role</option>
                             <option value="receptionist">Receptionist</option>
                             <option value="doctor">Doctor</option>
                             <option value="therapist">Therapist</option>
@@ -54,23 +54,27 @@
                     </div>
                 </div>
                 <div class="gender-details">
-                    <span class="gender-title">Gender</span>
-                    <div class="category">
-                        <label for="dot-1">
-                            <span class="dot one"></span>
-                            <span class="gender">Male</span>
+                    <span class="gender-title">Gender:</span>
+
+                    <!-- <div class="category">
+                        <label for="gender">
+                            <input type="radio" name="gender" id="gender">Male</input>
                         </label>
-                        <label for="dot-2">
-                            <span class="dot two"></span>
-                            <span class="gender">Female</span>
+                        <label for="gender">
+                            <input type="radio" name="gender" id="gender">Female</input>
                         </label>
-                    </div>
+                    </div> -->
+                    <select class="gender" name="gender" id="gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                 </div>
                 <div class="input-box">
                     <span class="details">Status:</span>
 
                     <select class="status" name="status" id="user_status">
-                        <option value=" status">Status</option>
+                        <option value="">Status</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
@@ -90,7 +94,9 @@
             var username = document.getElementById("username");
             var password = document.getElementById("password_1");
             var confirmpassword = document.getElementById("password_2");
+            var gender = document.getElementById("gender");
             var userrole = document.getElementById("user_role");
+            var userstatus = document.getElementById("user_status");
 
 
 
@@ -152,10 +158,22 @@
                 document.getElementById("phonenumber").focus();
                 return false;
             }
-            //validating gender
-            if (userrole.value == '') {
-                window.alert("Please select userrole");
+            //validate gender
+            if (gender.value == "") {
+                window.alert("please enter select your gender");
+                document.getElementById("gender").focus();
+                return false;
+            }
+            //validate userrole
+            if (userrole.value == "") {
+                window.alert("Userrole cannot be empty");
                 document.getElementById("user_role").focus();
+                return false;
+            }
+            //validation userstatus
+            if (userstatus.value == "") {
+                window.alert("please select your status");
+                document.getElementById("user_status").focus();
                 return false;
             }
         }

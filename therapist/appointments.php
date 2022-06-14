@@ -47,7 +47,7 @@
         </thead>
         <tbody>
             <?php
-            $db = mysqli_connect('localhost', 'root', '', 'darms');
+            $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
             $query = "SELECT * FROM appointment";
             $select_all_appointments = mysqli_query($db, $query);
             $i = 0;

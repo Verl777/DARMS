@@ -33,13 +33,21 @@
             background-color: #899499;
             color: white;
         }
+
+        .edit {
+            background: #10AFEF;
+            color: #fff;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
     <h1 id="titleoftable">Appointments</h1>
     <table id="appointments">
         <thead>
             <th>OrderNo</th>
             <th>Appointmentid</th>
-            <th>Nurseid</th>
+            <th>Doctorid</th>
             <th>Patientid</th>
             <th>Appointmentdate</th>
             <th>Appointmenttime</th>
@@ -48,14 +56,14 @@
         </thead>
         <tbody>
             <?php
-            $db = mysqli_connect('localhost', 'root', '', 'darms');
-            $query = "SELECT * FROM appointment";
+            $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+            $query = "SELECT * FROM appointment JOIN patient ON appointment.patientid=patient.patient_id";
             $select_all_appointments = mysqli_query($db, $query);
             $i = 0;
             while ($row = mysqli_fetch_assoc($select_all_appointments)) {
                 $appointment_id = $row['appointment_id'];
-                $nurse_id = $row['nurse_id'];
-                $patient_id = $row['patient_id'];
+                $doctorid = $row['doctorid'];
+                $patient_id = $row['patient_name'];
                 $appointment_date = $row['appointment_date'];
                 $appointment_time = $row['appointment_time'];
                 $createdat = $row['createdat'];
@@ -63,7 +71,7 @@
                 echo "<tr>";
                 echo "<td>{$i}</td>";
                 echo "<td>{$appointment_id}</td>";
-                echo "<td>{$nurse_id}</td>";
+                echo "<td>{$doctorid}</td>";
                 echo "<td>{$patient_id}</td>";
                 echo "<td>{$appointment_date}</td>";
                 echo "<td>{$appointment_time}</td>";

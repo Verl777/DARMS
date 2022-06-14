@@ -1,4 +1,4 @@
-<?php include "includes/receptionist_functions.php"; ?>
+<?php include "../receptionist/includes/receptionist_functions.php"; ?>
 <html>
 
 <head>
@@ -56,7 +56,7 @@
             <?php
             session_start();
             if (isset($_GET['edit'])) {
-                $db = mysqli_connect('localhost', 'root', '', 'darms');
+                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                 $patient_id = $_GET['edit'];
                 $query = "SELECT * FROM patient WHERE patient_id = $patient_id ";
                 $select_patient_id = mysqli_query($db, $query);
@@ -113,7 +113,7 @@
             // if (isset($_SESSION['patient'])) {
 
             if (isset($_POST['update_patient'])) {
-                $db = mysqli_connect('localhost', 'root', '', 'darms');
+                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                 $patient_name = $_POST['name'];
                 $patient_email = $_POST['email'];
                 $patient_mobile = $_POST['phone'];

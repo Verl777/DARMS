@@ -50,7 +50,7 @@
         </thead>
         <tbody>
             <?php
-            $db = mysqli_connect('localhost', 'root', '', 'darms');
+            $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
             $query = "SELECT * FROM patient";
             $select_all_patients = mysqli_query($db, $query);
             $i = 0;

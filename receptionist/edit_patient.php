@@ -6,12 +6,12 @@
     <style>
         body {
             font-family: Calibri, Helvetica, sans-serif;
-            background-color: rgb(26, 164, 245);
+            background-color:#060539;
         }
 
         .container {
             padding: 50px;
-            background-color: lightblue;
+            background-color: #15BBCF;
         }
 
         input[type=text],
@@ -32,13 +32,16 @@
         }
 
         .registerbtn {
-            background-color: #3779f5;
+            background-color: #064D55 ;
             color: white;
             padding: 16px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 10%;
+            font-size: 20px;
+            margin-left:500px;
+            border-radius: 10px;
             opacity: 0.9;
         }
 
@@ -46,17 +49,27 @@
             opacity: 1;
             color: blue;
         }
+        .back {
+            background: linear-gradient(#202221, #035597);
+            border: 2px solid #28cea4;
+            color: rgba(240, 229, 229, 0.932);
+            padding: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+    <button onclick="history.back()" class="back">Go Back</button>
         <h1 style="text-align:center;">Patient Update Form</h1>
         <form action="edit_patient.php" method="post">
             <?php
             session_start();
             if (isset($_GET['edit'])) {
-                $db = mysqli_connect('localhost', 'root', '', 'darms');
+                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                 $patient_id = $_GET['edit'];
                 $query = "SELECT * FROM patient WHERE patient_id = $patient_id ";
                 $select_patient_id = mysqli_query($db, $query);
@@ -90,9 +103,8 @@
                     <label>
                         <b>Gender : </b>
                     </label><br>
-                    <input type="radio" value="Male" name="gender" checked> Male
-                    <input type="radio" value="Female" name="gender"> Female
-                    <input type="radio" value="Other" name="gender"> Other<br />
+                    <input type="radio" value="Male" name="gender" > Male
+                    <input type="radio" value="Female" name="gender"> Female<br>
                     <label for="birthday"><b>Date of birth:</b></label>
                     <input type="date" id="birthday" value="<?php if (isset($Date_of_birth)) {
                                                                 echo $Date_of_birth;
@@ -113,7 +125,7 @@
             // if (isset($_SESSION['patient'])) {
 
             if (isset($_POST['update_patient'])) {
-                $db = mysqli_connect('localhost', 'root', '', 'darms');
+                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                 $patient_name = $_POST['name'];
                 $patient_email = $_POST['email'];
                 $patient_mobile = $_POST['phone'];

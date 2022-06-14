@@ -1,4 +1,4 @@
-<?php include "includes/receptionist_functions.php"; ?>
+<?php include "../receptionist/includes/receptionist_functions.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 <?php include "includes/sidebar.php"; ?>
@@ -33,6 +33,13 @@
             background-color: #899499;
             color: white;
         }
+        .edit {
+            background: #10AFEF;
+            color: #fff;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
     <h1 id="titleoftable">Patients</h1>
     <table id="patients">
@@ -50,7 +57,7 @@
         </thead>
         <tbody>
             <?php
-            $db = mysqli_connect('localhost', 'root', '', 'darms');
+            $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
             $query = "SELECT * FROM patient";
             $select_all_patients = mysqli_query($db, $query);
             $i = 0;
@@ -75,8 +82,8 @@
                 echo "<td>{$guardian}</td>";
                 echo "<td>{$patient_address}</td>";
                 echo "<td>{$createdat}</td>";
-                echo "<td><a class='edit' href='edit_patient.php?edit={$patient_id}'>Edit</a></td>";
-                echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
+                echo "<td><a class='edit' href='../receptionist/edit_patient.php?edit={$patient_id}'>Edit</a></td>";
+                // echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
                 echo "</tr>";
             }
             ?>

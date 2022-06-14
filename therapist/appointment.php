@@ -65,7 +65,7 @@
                 <label>Select Patient</label>
                 <select name="selectpatient" class="text-input">
                     <?php
-                    $connection = mysqli_connect('localhost', 'root', '', 'darms');
+                    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                     $query = "SELECT * FROM patient";
                     $select_all_patients = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_patients)) {
@@ -113,7 +113,7 @@
                 <label>Select Nurse</label>
                 <select name="selectnurse" class="text-input">
                     <?php
-                    $connection = mysqli_connect('localhost', 'root', '', 'darms');
+                    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                     $query = "SELECT * FROM users WHERE user_role='nurse' ";
                     $select_all_nurses = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_nurses)) {

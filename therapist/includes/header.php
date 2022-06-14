@@ -38,15 +38,16 @@
         }
 
         .article {
-            width: 70%;
+            width: 80%;
             float: left;
-            /* height: 100%; */
+             height:580px;
         }
 
         .aside {
+            width: 20%;
             float: left;
             position: relative;
-            height: 630px;
+            height: 580px;
             background: linear-gradient(gray, black, darkcyan, gray, black, darkcyan);
         }
 
@@ -54,7 +55,7 @@
             margin-bottom: 0px;
             background-color: darkcyan;
             width: 100%;
-            height: 80px;
+            height: 30px;
             text-align: center;
             clear: both;
             padding: 10px;

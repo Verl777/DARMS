@@ -1,5 +1,5 @@
-<?php include "includes/db.php"; ?>
-<?php include "includes/functions.php"; ?>
+<?php include "../includes/db.php"; ?>
+<?php include "../includes/functions.php"; ?>
 <html>
 <head>
     <title>Activity</title>
@@ -48,11 +48,21 @@
             opacity: 1;
             background-color: blue;
         }
+        button {
+            background: linear-gradient(#202221, #035597);
+            border: 2px solid #28cea4;
+            color: rgba(240, 229, 229, 0.932);
+            padding: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
 <body><br><br>
     <form method="post" action="generateprescription.php">
+    <button onclick="history.back()" class="back">Go Back</button>
         <h1 class="activity">PATIENT ACTIVITY :<br><br></h1>
         <table width:="50%">
             <tbody>

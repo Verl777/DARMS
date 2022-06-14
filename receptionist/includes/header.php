@@ -1,3 +1,5 @@
+<?php include "../includes/functions.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboad</title>
+    <title>dashboard</title>
     <style>
         body {
             border: 0;
@@ -13,7 +15,8 @@
             overflow-x: hidden;
             /* margin-top: 0; */
         }
-/*default styling for all header-ones*/
+
+        /*default styling for all header-ones*/
         h1 {
             text-align: center;
         }
@@ -38,15 +41,17 @@
         }
 
         .article {
-            width: 70%;
+            width: 80%;
             float: left;
-            /* height: 100%; */
+            height: 580px;
+            background: #CCECF6;
         }
 
         .aside {
+            width: 20%;
             float: left;
             position: relative;
-            height: 630px;
+            height: 580px;
             background: linear-gradient(gray, black, darkcyan, gray, black, darkcyan);
         }
 
@@ -54,7 +59,7 @@
             margin-bottom: 0px;
             background-color: darkcyan;
             width: 100%;
-            height: 80px;
+            height: 30px;
             text-align: center;
             clear: both;
             padding: 10px;

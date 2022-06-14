@@ -8,7 +8,7 @@ if (isset($_POST['create_patient'])) {
 // function to add patient
 function addPatient()
 {
-    $connection = mysqli_connect('localhost', 'root', '', 'darms');
+    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
     $patient_name = $_POST['name'];
     $patient_email = $_POST['email'];
     $patient_mobile = $_POST['phone'];
@@ -16,6 +16,7 @@ function addPatient()
     $Date_of_birth = $_POST['birthday'];
     $guardian = $_POST['guardian'];
     $patient_address = $_POST['address'];
+
 
     // validation 
 
@@ -45,21 +46,37 @@ function addPatient()
     if (empty($patient_address)) {
         array_push($errors, "patient_address required");
     }
+    // validate date
+    $todaysDate = (date('Y') - 12) . '/' . date('m/d');
+    if (strtotime('/"', '-', $Date_of_birth) > strtotime('/"', '-', $todaysDate)) {
+        // echo "$todaysDate, cannot choose from passed dates";
+        array_push($errors, "cannot register less than 12 years");
+        // $blnValidated = false;
+    } else {
+        // $date_validate = str_replace('/"', '-', $Date_of_birth);
+        // $newDate = date("Y/m/d", strtotime($date_validate));
+        // $today = date("Y" - 12);
+        // // echo var_dump($today);
+
+        // if ($newDate > $today) {
+        //     array_push($errors, "cannot register less than 12 years");
+        // }
 
 
-    // register patient if there are no errors in the form
-    if (count($errors) == 0) {
-        // global $connection;
-        // insert patient
-        $query = "INSERT INTO patient (patient_name, patient_email, patient_mobile, patient_gender, Date_of_birth, guardian, patient_address, createdat) 
+        // register patient if there are no errors in the form
+        if (count($errors) == 0) {
+            // global $connection;
+            // insert patient
+            $query = "INSERT INTO patient (patient_name, patient_email, patient_mobile, patient_gender, Date_of_birth, guardian, patient_address, createdat) 
         VALUES('$patient_name', '$patient_email', '$patient_mobile', '$patient_gender', '$Date_of_birth', '$guardian', '$patient_address', now())";
-        mysqli_query($connection, $query);
+            mysqli_query($connection, $query);
 
-        header('location: patients.php');
+            header('location: patients.php');
+        }
     }
 }
 
-function display_error()
+function display_error_validate()
 {
     global $errors;
 
@@ -71,25 +88,26 @@ function display_error()
         echo '</div>';
     }
 }
+
 //booking appointments
 if (isset($_POST['confirm'])) {
     confirm();
 }
 function confirm()
 {
-    $connection = mysqli_connect('localhost', 'root', '', 'darms');
-    $nurse_id = mysqli_real_escape_string($connection, $_POST['selectnurse']);
-    $patient_id = mysqli_real_escape_string($connection, $_POST['selectpatient']);
+    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+    $doctorid = mysqli_real_escape_string($connection, $_POST['selectdoctor']);
+    $patientid = mysqli_real_escape_string($connection, $_POST['selectpatient']);
     $appointment_date = mysqli_real_escape_string($connection, $_POST['date']);
     $appointment_time = mysqli_real_escape_string($connection, $_POST['time']);
     $contact = mysqli_real_escape_string($connection, $_POST['contact']);
 
     // validation 
-    if (empty($nurse_id)) {
-        array_push($errors, "nurse_id required");
+    if (empty($doctorid)) {
+        array_push($errors, "doctorid required");
     }
 
-    if (empty($patient_id)) {
+    if (empty($patientid)) {
         array_push($errors, "patient_id required");
     }
 
@@ -107,8 +125,8 @@ function confirm()
 
     // book appointment if there are no errors in the form
     if (count($errors) == 0) {
-        $sql = "INSERT INTO appointment (nurse_id,patient_id,contact, appointment_date,appointment_time,createdat) 
-    VALUES('$nurse_id', '$patient_id','$contact', '$appointment_date','$appointment_time', now())";
+        $sql = "INSERT INTO appointment (doctorid,patientid, appointment_date,appointment_time,createdat) 
+    VALUES('$doctorid', '$patientid', '$appointment_date','$appointment_time', now())";
         mysqli_query($connection, $sql);
 
         header('location: appointments.php');

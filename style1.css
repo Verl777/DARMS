@@ -106,7 +106,8 @@ form .category label {
     cursor: pointer;
 }
 
-form .category label .dot {
+
+/* form #gender {
     height: 18px;
     width: 18px;
     border-radius: 50%;
@@ -114,17 +115,13 @@ form .category label .dot {
     background: #d9d9d9;
     border: 5px solid transparent;
     transition: all 0.3s ease;
-}
+} */
 
-#dot-1:checked~.category label .one,
-#dot-2:checked~.category label .two {
+
+/* #gender:checked~.category label {
     background: #9b59b6;
     border-color: #d9d9d9;
-}
-
-form input[type="radio"] {
-    display: none;
-}
+} */
 
 form .button {
     height: 45px;

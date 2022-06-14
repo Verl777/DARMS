@@ -6,7 +6,9 @@
     <style>
         body {
             font-family: Calibri, Helvetica, sans-serif;
-            background-color: gray;
+            background-color: darkcyan;
+            margin: 30px;
+            overflow-y: hidden;
         }
 
         h2 {
@@ -38,7 +40,7 @@
         }
 
         button {
-            background-color: #5c5d5d;
+            background: linear-gradient(#202221, #035597);
             color: white;
             padding: 16px 20px;
             margin: auto;
@@ -54,19 +56,29 @@
             opacity: 1;
             color: blue;
         }
+
+        button .back {
+            background: linear-gradient(#202221, #035597);
+            border: 2px solid #28cea4;
+            color: rgba(240, 229, 229, 0.932);
+            padding: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 
 <body>
+    <button onclick="history.back()" class="back" style="margin-top:25px;">Go Back</button>
     <h2>Appointment Booking</h2>
-    <form action="appointment.php" method="post">
+    <form action="appointment.php" method="post" onsubmit="return checkDate()">
         <div class="form">
-            <!---->
             <div class="select">
                 <label>Select Patient</label>
                 <select name="selectpatient" class="text-input">
                     <?php
-                    $connection = mysqli_connect('localhost', 'root', '', 'darms');
+                    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                     $query = "SELECT * FROM patient";
                     $select_all_patients = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_patients)) {
@@ -79,14 +91,14 @@
                     <?php } ?>
                 </select>
             </div>
-            <div class="contact">
+            <!-- <div class="contact">
                 <label for="contact">
                     Contact
                 </label>
                 <div>
                     <input type="tel" id="contact" name="contact" placeholder="123">
                 </div>
-            </div>
+            </div> -->
             <!---->
             <div class="date">
                 <label for="date">
@@ -111,11 +123,11 @@
             </div>-->
             <!---->
             <div class="select">
-                <label>Select Nurse</label>
-                <select name="selectnurse" class="text-input">
+                <label>Select Doctor</label>
+                <select name="selectdoctor" class="text-input">
                     <?php
-                    $connection = mysqli_connect('localhost', 'root', '', 'darms');
-                    $query = "SELECT * FROM users WHERE user_role='nurse' ";
+                    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                    $query = "SELECT * FROM users WHERE user_role='doctor' ";
                     $select_all_nurses = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_nurses)) {
 
@@ -132,6 +144,17 @@
             <button type="submit" name="confirm" class="confirmbtn">Confirm</button>
         </div>
     </form>
+    <script>
+        function checkDate() {
+            var selectedText = document.getElementById('date').value;
+            var selectedDate = new Date(selectedText);
+            var now = new Date();
+            if (selectedDate < now) {
+                alert("Date must be in the future");
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>
