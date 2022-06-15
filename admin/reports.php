@@ -16,11 +16,14 @@
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: separate;
             border-spacing: 20px 0;
+            width: 100%;
         }
 
         #thead {
             height: 80px;
         }
+        
+       
 
         #appointments td,
         #appointments th {
@@ -49,28 +52,11 @@
             color: white;
         }
 
-        .edit {
-            background: #10AFEF;
-            color: #fff;
-            padding: 5px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .delete {
-            background: #E2031E;
-            color: #fff;
-            width: 50px;
-            padding: 5px;
-            text-decoration: none;
-            border-radius: 5px;
-
-        }
+       
     </style>
     <h1 id="titleoftable">Appointments</h1>
     <table id="appointments">
-        <thead id="thead">
-            <th>Active Doctors<?php
+        <div><thead><th>Active Doctors<?php
                                 $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                                 $query = "SELECT * FROM users WHERE user_role='doctor' AND status='active'";
                                 $select_all_doctors = mysqli_query($db, $query);
@@ -90,26 +76,99 @@
                  <h3>Total:<?php echo $rowcount; ?></h3>
             </th>
         <?php } ?>
-        <th>Total Receptionists<h3>Total:</h3>
-        </th>
-        <th>Total Therapists<h3>Total:</h3>
-        </th>
-        <th>Patients with Age<h3>Total:</h3>
-        </th>
-        <th>Patients Reported in a day<h3>Total:</h3>
-        </th>
-        <th>Appointments<h3>Total:</h3>
-        </th>
-        </thead>
-        <tbody>
-            <td><a href="activedocs.php">View</a></td>
+        <th>Total Receptionists<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM users WHERE user_role='receptionist'";
+                                $select_all_receptionists = mysqli_query($db, $query);
+                                if ($result = $select_all_receptionists) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Total Therapists<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM users WHERE user_role='therapist'";
+                                $select_all_therapists = mysqli_query($db, $query);
+                                if ($result = $select_all_therapists) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Patients with Age<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM patient WHERE Date_of_birth>='1998-01-01'";
+                                $select_all_ages = mysqli_query($db, $query);
+                                if ($result = $select_all_ages) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?></thead>
+        <tbody><td><a href="activedocs.php">View</a></td>
             <td><a href="totalpatients.php">View</a></td>
             <td><a href="receptionists.php">View</a></td>
             <td><a href="therapists.php">View</a></td>
-            <td><a href="patientsage.php">View</a></td>
-            <td><a href="patientsregistered.php">View</a></td>
+            <td><a href="patientsage.php">View</a></td></tbody>
+    </div>
+    <div>
+        <thead><th>Patients Reported in a day<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM patient WHERE createdat >= CURDATE() && createdat < (CURDATE() + INTERVAL 1 DAY)";
+                                $select_all_reported = mysqli_query($db, $query);
+                                if ($result = $select_all_reported) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Appointments<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM appointment JOIN patient ON appointment.patientid=patient.patient_id";
+                                $select_all_apps = mysqli_query($db, $query);
+                                if ($result = $select_all_apps) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Progress Week<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM progress";
+                                $select_all_weeks = mysqli_query($db, $query);
+                                if ($result = $select_all_weeks) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Unknown patient<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM unknown_patient";
+                                $select_all_unknown = mysqli_query($db, $query);
+                                if ($result = $select_all_unknown) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?>
+        <th>Activity<?php
+                                $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+                                $query = "SELECT * FROM activity";
+                                $select_all_activities = mysqli_query($db, $query);
+                                if ($result = $select_all_activities) {
+                                    $rowcount = mysqli_num_rows($result);
+                                ?>
+                 <h3>Total:<?php echo $rowcount; ?></h3>
+            </th>
+        <?php } ?></thead>
+        <tbody> <td><a href="patientsregistered.php">View</a></td>
             <td><a href="totalapps.php">View</a></td>
-        </tbody>
-    </table>
+            <td><a href="weekpro.php">View</a></td>
+            <td><a href="unknownpatient.php">View</a></td>
+            <td><a href="pactivity.php">View</a></td></tbody>
+    </div>
+    
+       
 </div>
-<?php include "includes/footer.php"; ?>

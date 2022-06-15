@@ -4,7 +4,7 @@
 <?php
 if (isset($_POST['search_detail'])) {
     $data_searched = $_POST['search_data'];
-    header("Location: filter_totalpatients.php?searching=$data_searched");
+    header("Location: filter_pactivity.php?searching=$data_searched");
 } ?>
 
 <div class="article">
@@ -66,29 +66,25 @@ if (isset($_POST['search_detail'])) {
     <table id="patients">
         <thead>
             <th>Fullname</th>
-            <th>Birthdate</th>
-            <th>Gender</th>
-            <th>Email</th>
-            <th>Createdat</th>
+            <th>Date</th>
+            <th>Activity</th>
         </thead>
         <tbody>
             <?php
             $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
-            $query = "SELECT * FROM patient";
-            $select_all_patients = mysqli_query($db, $query);
+            $query = "SELECT * FROM activity";
+            $select_all_activities = mysqli_query($db, $query);
             $i = 0;
-            while ($row = mysqli_fetch_assoc($select_all_patients)) {
-                $fullname = $row['patient_name'];
-                $birthdate = $row['Date_of_birth'];
-                $gender = $row['patient_gender'];
-                $email = $row['patient_email'];
-                $createdat = $row['createdat'];
+            while ($row = mysqli_fetch_assoc($select_all_activities)) {
+                $fullname = $row['p_name'];
+                $date = $row['a_date'];
+                $activity = $row['activity'];
+            
                 echo "<tr>";
                 echo "<td>{$fullname}</td>";
-                echo "<td>{$birthdate}</td>";
-                echo "<td>{$gender}</td>";
-                echo "<td>{$email}</td>";
-                echo "<td>{$createdat}</td>";
+                echo "<td>{$date}</td>";
+                echo "<td>{$activity}</td>";
+               
                 // echo "<td><a class='edit' href='edit_patient.php?edit={$patient_id}'>Update</a></td>";
                 // echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
                 echo "</tr>";

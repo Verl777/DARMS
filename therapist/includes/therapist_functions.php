@@ -51,12 +51,12 @@ function addtime()
 if (isset($_POST['progresssubmit'])) {
     progress();
 }
-// function to doctor timing details
+// function to progress details
 function progress()
 {
     $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
-    $week= mysqli_real_escape_string($connection, $_POST['selectweek']);
-    $fullname= mysqli_real_escape_string($connection, $_POST['selectpatient']);
+    $week = mysqli_real_escape_string($connection, $_POST['selectweek']);
+    $fullname = mysqli_real_escape_string($connection, $_POST['selectpatient']);
     $pro_date = mysqli_real_escape_string($connection, $_POST['prodate']);
     $remaarks = mysqli_real_escape_string($connection, $_POST['remarks']);
     $comments = mysqli_real_escape_string($connection, $_POST['instructions']);
@@ -85,15 +85,58 @@ function progress()
     }
 
 
-    // register timing if there are no errors in the form
+    // register progress if there are no errors in the form
     if (count($errors) == 0) {
         //  global $connection;
-        // insert into  timing
+        // insert into  progress
         $query = "INSERT INTO progress (week,fullname, pro_date, remaarks, comments) 
         VALUES('$week','$fullname', '$pro_date', '$remaarks', '$comments')";
         mysqli_query($connection, $query);
 
         header('location: progress.php');
+    }
+}
+// instatiate a methode to call add patient function
+if (isset($_POST['activitysubmit'])) {
+    addactivity();
+}
+// function to doctor timing details
+function addactivity()
+{
+    $connection = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
+    $name = mysqli_real_escape_string($connection, $_POST['selectpatient']);
+    $date = mysqli_real_escape_string($connection, $_POST['date']);
+    $activity = mysqli_real_escape_string($connection, $_POST['activity']);
+    $instruct = mysqli_real_escape_string($connection, $_POST['instructions']);
+
+    // validation 
+    if (empty($name)) {
+        array_push($errors, "name is required");
+    }
+
+    if (empty($date)) {
+        array_push($errors, "Date is required");
+    }
+
+    if (empty($activity)) {
+        array_push($errors, "activity is required");
+    }
+
+    if (empty($instruct)) {
+        array_push($errors, "instructions required");
+    }
+
+
+
+    // register timing if there are no errors in the form
+    if (count($errors) == 0) {
+        //  global $connection;
+        // insert into  timing
+        $query = "INSERT INTO activity (p_name, a_date, activity, remarks) 
+        VALUES('$name', '$date', '$activity', '$instruct')";
+        mysqli_query($connection, $query);
+
+        header('location: activity.php');
     }
 }
 

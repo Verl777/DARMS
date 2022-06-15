@@ -14,6 +14,7 @@
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
+            background-color: darkcyan;
         }
 
         #patients td,
@@ -100,4 +101,3 @@
 
     ?>
 </div>
-<?php include "includes/footer.php"; ?>

@@ -1,11 +1,6 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 <?php include "includes/sidebar.php"; ?>
-<?php
-if (isset($_POST['search_detail'])) {
-    $data_searched = $_POST['search_data'];
-    header("Location: filter_totalpatients.php?searching=$data_searched");
-} ?>
 
 <div class="article">
     <style>
@@ -56,7 +51,7 @@ if (isset($_POST['search_detail'])) {
 
         }
     </style>
-    <h1 id="titleoftable">Total Patients Report</h1>
+    <h1 id="titleoftable">Weekly Report</h1>
     <form method="post">
         <input type="text" name="search_data" />
         <input type="submit" name="search_detail" value="filter record" />
@@ -65,30 +60,27 @@ if (isset($_POST['search_detail'])) {
 
     <table id="patients">
         <thead>
-            <th>Fullname</th>
-            <th>Birthdate</th>
+            <th>Patient Name</th>
+            <th>Date Joined</th>
             <th>Gender</th>
-            <th>Email</th>
-            <th>Createdat</th>
         </thead>
         <tbody>
             <?php
+            if (isset($_GET['searching'])) {
+                $search_unknown = $_GET['searching'];
+            }
             $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
-            $query = "SELECT * FROM patient";
-            $select_all_patients = mysqli_query($db, $query);
+            $query = "SELECT * FROM unknown_patient WHERE pname LIKE '%$search_unknown%'";
+            $select_all_unknown = mysqli_query($db, $query);
             $i = 0;
-            while ($row = mysqli_fetch_assoc($select_all_patients)) {
-                $fullname = $row['patient_name'];
-                $birthdate = $row['Date_of_birth'];
-                $gender = $row['patient_gender'];
-                $email = $row['patient_email'];
-                $createdat = $row['createdat'];
+            while ($row = mysqli_fetch_assoc($select_all_unknown)) {
+                $patient = $row['pname'];
+                $datejoined = $row['udate'];
+                $gender = $row['gender'];
                 echo "<tr>";
-                echo "<td>{$fullname}</td>";
-                echo "<td>{$birthdate}</td>";
+                echo "<td>{$patient}</td>";
+                echo "<td>{$datejoined}</td>";
                 echo "<td>{$gender}</td>";
-                echo "<td>{$email}</td>";
-                echo "<td>{$createdat}</td>";
                 // echo "<td><a class='edit' href='edit_patient.php?edit={$patient_id}'>Update</a></td>";
                 // echo "<td><a class='delete' href='patients.php?delete={$patient_id}'>Delete</a></td>";
                 echo "</tr>";

@@ -82,18 +82,18 @@
             <th>Week 12</th>
         </thead>
         <tbody>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
-            <td><a href="tpatients.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
+            <td><a href="sess.php">View</a></td>
         </tbody>
     </table>
 </div>
