@@ -7,40 +7,49 @@
 
 <div class="card-block">
     <style>
-           form {
+        form {
             margin-left: 300px;
         }
-        .timings{
+
+        .timings {
             margin-bottom: 20px;
         }
-        .details input,select{
+
+        .details input,
+        select {
             width: 50%;
             height: 30px;
         }
-        .details input:hover{
+
+        .details input:hover {
             background-color: aqua;
         }
-        .details select:hover{
+
+        .details select:hover {
             background-color: aqua;
         }
-        .label1{
+
+        .label1 {
             font-size: 18px;
             font-weight: bold;
 
         }
-        .submit{
+
+        .submit {
             margin-left: 450px;
         }
-        .submit button{
+
+        .submit button {
             font-size: 20px;
             font-weight: bold;
             margin-top: 15px;
             background-color: darkcyan;
             border-radius: 10px;
         }
-        .submit button:hover{
+
+        .submit button:hover {
             background-color: blueviolet;
-            
+
         }
     </style>
     <form id="main" method="post" action="t_timings.php">
@@ -69,14 +78,14 @@
         <div class="timings">
             <label class="label1">From</label>
             <div class="details">
-                <input class="form-control" type="time" name="starttime" id="starttime"></td>
+                <input class="form-control" type="text" name="starttime" id="starttime"></td>
             </div>
         </div>
 
         <div class="timings">
             <label class="label1">To</label>
             <div class="details">
-                <input class="form-control" type="time" name="endtime" id="endtime">
+                <input class="form-control" type="text" name="endtime" id="endtime">
             </div>
         </div>
         <div class="timings">

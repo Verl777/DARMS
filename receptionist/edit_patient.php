@@ -1,5 +1,5 @@
 <?php include "includes/receptionist_functions.php"; ?>
-<html>
+<html lang="en">
 
 <head>
     <title>User registration form</title>
@@ -106,13 +106,13 @@
                     <input type="radio" value="Male" name="gender" > Male
                     <input type="radio" value="Female" name="gender"> Female<br>
                     <label for="birthday"><b>Date of birth:</b></label>
-                    <input type="date" id="birthday" value="<?php if (isset($Date_of_birth)) {
+                    <input type="text" id="birthday" value="<?php if (isset($Date_of_birth)) {
                                                                 echo $Date_of_birth;
                                                             } ?>" name="birthday"><br>
                     <b>Guardian Name :</b>
                     <input type="text" value="<?php if (isset($guardian)) {
                                                     echo $guardian;
-                                                } ?>" name="guardian" placeholder="Current Address" value="address" />
+                                                } ?>" name="guardian" placeholder="Guardian" value="address" />
                     <b>Current Address :</b>
                     <input type="text" value="<?php if (isset($patient_address)) {
                                                     echo $patient_address;

@@ -1,21 +1,48 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 15, 2022 at 04:47 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Database: `darms`
 --
-DROP database darms;
-create database darms;
-use darms;
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `allocation`
+-- Table structure for table `activity`
 --
 
-CREATE TABLE `allocation` (
-  `allocation_id` int(10) NOT NULL,
-  `patient_id` int(10) NOT NULL,
-  `room_id` int(10) NOT NULL,
-  `createdat` date DEFAULT NULL
+CREATE TABLE `activity` (
+  `a_id` int(10) NOT NULL,
+  `p_name` varchar(50) DEFAULT NULL,
+  `a_date` date DEFAULT NULL,
+  `activity` varchar(50) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`a_id`, `p_name`, `a_date`, `activity`, `remarks`) VALUES
+(1, '12', '2022-06-14', 'cook', 'Bake a cake.'),
+(2, '11', '2022-06-14', 'games', 'Play twice a day.'),
+(3, '2', '2022-06-15', 'Music', 'Listen to classics.');
 
 -- --------------------------------------------------------
 
@@ -38,7 +65,9 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appointment_id`, `doctorid`, `patientid`, `appointment_date`, `appointment_time`, `createdat`) VALUES
 (1, 1, 4, '2022-06-09', '20:00:00', '2022-06-09'),
-(2, 2, 2, '2022-06-10', '14:30:00', '2022-06-09');
+(2, 2, 2, '2022-06-10', '14:30:00', '2022-06-09'),
+(4, 2, 1, '2022-06-14', '00:00:00', '2022-06-13'),
+(5, 2, 2, '2022-06-14', '00:00:00', '2022-06-13');
 
 -- --------------------------------------------------------
 
@@ -76,9 +105,23 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`patient_id`, `patient_name`, `patient_email`, `patient_mobile`, `patient_gender`, `Date_of_birth`, `guardian`, `patient_address`, `createdat`) VALUES
 (1, 'Phylice Buari', 'buari@gmail.com', '0756453423', 'Female', '1982-08-03', 'Phyl Peters', 'Mlolongo, Nairobi', '2022-06-09'),
-(2, 'Tiberius Peter', 'peter@gmail.com', '0722334455', 'Male', '2000-11-21', 'Phyl Peters', 'Nairobi', '2022-06-09'),
+(2, 'Tiberius Peter', 'peter1@gmail.com', '0722334455', 'Male', '2000-11-21', 'Phyl Peters', 'Nairobi', '2022-06-10'),
 (3, 'Viona Bernard', 'bernard@gmail.com', '0732433454', 'Female', '2006-05-17', 'Vee vee', 'Andei', '2022-06-09'),
-(4, 'Yvonne Kiama', 'kiama@gmail.com', '0786453243', 'Female', '2002-07-08', 'Kiama Kandai', 'Athi', '2022-06-09');
+(4, 'Yvonne Kiama', 'kiama@gmail.com', '0786453243', 'Female', '2002-07-08', 'Kiama Kandai', 'Athi', '2022-06-09'),
+(11, 'Delvis  Miregwa', 'miregwa@gmail.com', '0786765434', 'Male', '2009-06-11', 'Miregwa', 'Nairobi', '2022-06-11'),
+(12, 'Evaline Ntinyari', 'entinyari@gmail.com', '0787654534', 'Female', '2022-06-16', 'Evaline', 'Kiambu', '2022-06-11'),
+(33, 'Valerian Moraa', 'moraa@gmail.com', '', '', '2022-06-14', '', '', '2022-06-13'),
+(34, 'Eva', 'eva@gmail.com', '', '', '2022-06-13', '', '', '2022-06-13'),
+(35, 'Eva', 'eva@gmail.com', '', '', '2022-06-13', '', '', '2022-06-13'),
+(36, 'patient test', 'patient@gmail.com', '0722334455', 'Male', '2022-05-08', 'tester', 'tester', '2022-06-13'),
+(37, 'tester2', 'tester2@gmail.com', '0732433454', 'Female', '2022-12-06', 'tester', 'ter', '2022-06-13'),
+(38, 'etrfyguyhij', 'gf@gmail.com', '0732433454', 'Male', '0000-00-00', 'qwer', 'sdf', '2022-06-13'),
+(39, 'qwergthyu', 's@gmail.com', '0732433454', 'Male', '2022-12-06', 'www', 'www', '2022-06-13'),
+(40, 'dfgvhbknjkl', 'g@gmail.com', '0722334455', 'Female', '2022-12-06', 'sbj', 'sss', '2022-06-13'),
+(41, 'dfghj', 'ss@gmail.com', '0722334455', 'Female', '2022-12-06', 'sjdh', 'hsb', '2022-06-13'),
+(42, 'hjsfdgesf', 'sgadhg@gmail.com', '25355353', 'Female', '2022-12-06', 'qwsdf', 'Nairobi', '2022-06-13'),
+(43, '3sedrtfyuhijo', 'dd@gmail.com', '12234546', 'Female', '0000-00-00', 'sdfdtr', 'sdfg', '2022-06-13'),
+(44, 'zsrxdtfyvguhijokmplghf', 'moraa@gmail.com', '12345', 'Female', '2022-12-06', 'sdfghj', 'sdfdgh', '2022-06-13');
 
 -- --------------------------------------------------------
 
@@ -100,9 +143,9 @@ CREATE TABLE `prescription` (
 --
 
 INSERT INTO `prescription` (`pid`, `patient_id`, `pdate`, `diagnosis`, `rehab`, `instructions`) VALUES
-(1, 0, '2009-06-22', '6t4e839iw0-pq=[wpeoiuryoiup9e[0owpq[y', 'rgtfdhyusioqp[wpoeidrufhyduwiqooweiru', 'tryeuwioqpoweiruewiqopwoeiur'),
 (2, 0, '2010-06-22', 'fetwyhqASGD', 'HEWJIQLSA', 'HREU3KWJEHJW'),
-(3, 0, '2010-06-22', 'JHGFDFRTYUIOP', 'IUYTREWQWERTYUI', 'TREW2Q1');
+(3, 0, '2010-06-22', 'JHGFDFRTYUIOP', 'IUYTREWQWERTYUI', 'TREW2Q1'),
+(4, 2, '2011-06-22', 'tyuiop[][poiuytr', 'oiuooiuyu', 'oiuytrtyoiuty');
 
 -- --------------------------------------------------------
 
@@ -111,25 +154,24 @@ INSERT INTO `prescription` (`pid`, `patient_id`, `pdate`, `diagnosis`, `rehab`, 
 --
 
 CREATE TABLE `progress` (
-  `progress_id` int(10) NOT NULL,
-  `patient_id` int(10) NOT NULL,
-  `therapist_id` int(10) NOT NULL,
-  `comments` varchar(500) NOT NULL,
-  `remarks` varchar(200) NOT NULL
+  `pro_id` int(10) NOT NULL,
+  `week` varchar(10) DEFAULT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
+  `pro_date` date DEFAULT NULL,
+  `remaarks` varchar(255) DEFAULT NULL,
+  `comments` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `room`
+-- Dumping data for table `progress`
 --
 
-CREATE TABLE `room` (
-  `room_id` int(10) NOT NULL,
-  `room_name` varchar(100) NOT NULL,
-  `room_status` varchar(50) NOT NULL,
-  `no_of_beds` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `progress` (`pro_id`, `week`, `fullname`, `pro_date`, `remaarks`, `comments`) VALUES
+(1, NULL, '3', '2022-06-10', 'yeuieoeo', 'jdjslsl wjjwiwowo'),
+(2, NULL, '3', '2022-06-14', 'lkjhgfdfghyjk', ''),
+(3, NULL, '', '2022-06-15', 'jhgh', 'hjjkk jiol,l'),
+(6, 'week1', '2', '2022-06-10', 'ytreewq', 'juytrew'),
+(7, 'week2', '4', '2022-06-10', 'iiytrew', 'iuytrew');
 
 -- --------------------------------------------------------
 
@@ -181,6 +223,26 @@ INSERT INTO `t_timings` (`timing_id`, `therapist_id`, `start_time`, `end_time`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unknown_patient`
+--
+
+CREATE TABLE `unknown_patient` (
+  `uid` int(10) NOT NULL,
+  `pname` varchar(50) NOT NULL,
+  `udate` date DEFAULT NULL,
+  `gender` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `unknown_patient`
+--
+
+INSERT INTO `unknown_patient` (`uid`, `pname`, `udate`, `gender`) VALUES
+(1, 'Jon Doe1', '2022-06-12', 'Male');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -202,7 +264,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `user_name`, `user_mobile`, `user_email`, `user_password`, `createdat`, `user_role`, `gender`, `status`) VALUES
-(1, 'Valerian Moraa', 'moraa', '0742526862', 'moraa@gmail.com', '5d7faa4f3269fd01a933e2783b959403', '2022-06-10', '', '', 'active'),
+(1, 'Valerian Moraa', 'moraa', '0742526862', 'moraa@gmail.com', '#Moraa254', '2022-06-13', '', 'female', 'active'),
 (2, 'Ryan Andrews', 'ryan', '0798786754', 'ryan@gmail.com', 'c5aa5eb3d973208cc09e091cf1f9c53b', '2022-06-09', 'doctor', 'male', 'active'),
 (3, 'Valerian Moraa', 'moraa', '0723546763', 'moraa@gmail.com', '5d7faa4f3269fd01a933e2783b959403', '2022-06-09', 'receptionist', 'female', 'active'),
 (4, 'Steph Raro', 'raro', '0789897676', 'raro@gmail.com', '4504bcf5be1dc2da1d6ac16e4cae9285', '2022-06-09', 'receptionist', 'male', 'active'),
@@ -215,11 +277,10 @@ INSERT INTO `users` (`user_id`, `fullname`, `user_name`, `user_mobile`, `user_em
 --
 
 --
--- Indexes for table `allocation`
+-- Indexes for table `activity`
 --
-ALTER TABLE `allocation`
-  ADD PRIMARY KEY (`allocation_id`),
-  ADD KEY `room_id` (`room_id`);
+ALTER TABLE `activity`
+  ADD PRIMARY KEY (`a_id`);
 
 --
 -- Indexes for table `appointment`
@@ -251,15 +312,7 @@ ALTER TABLE `prescription`
 -- Indexes for table `progress`
 --
 ALTER TABLE `progress`
-  ADD PRIMARY KEY (`progress_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `therapist_id` (`therapist_id`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`room_id`);
+  ADD PRIMARY KEY (`pro_id`);
 
 --
 -- Indexes for table `timings`
@@ -274,6 +327,12 @@ ALTER TABLE `t_timings`
   ADD PRIMARY KEY (`timing_id`);
 
 --
+-- Indexes for table `unknown_patient`
+--
+ALTER TABLE `unknown_patient`
+  ADD PRIMARY KEY (`uid`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -284,40 +343,34 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `allocation`
+-- AUTO_INCREMENT for table `activity`
 --
-ALTER TABLE `allocation`
-  MODIFY `allocation_id` int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `activity`
+  MODIFY `a_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `appointment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `patient_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `prescription`
 --
 ALTER TABLE `prescription`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `progress_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-  MODIFY `room_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pro_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `timings`
@@ -332,6 +385,12 @@ ALTER TABLE `t_timings`
   MODIFY `timing_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `unknown_patient`
+--
+ALTER TABLE `unknown_patient`
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -342,24 +401,13 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `allocation`
---
-ALTER TABLE `allocation`
-  ADD CONSTRAINT `allocation_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`);
-
---
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
   ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`doctorid`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`patientid`) REFERENCES `patient` (`patient_id`);
-
---
--- Constraints for table `progress`
---
-ALTER TABLE `progress`
-  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-  ADD CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`therapist_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

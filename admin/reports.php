@@ -59,9 +59,9 @@
         <div><thead><th>Active Doctors<?php
                                 $db = mysqli_connect('localhost', 'Valerian', '#Valeriephyl254', 'darms');
                                 $query = "SELECT * FROM users WHERE user_role='doctor' AND status='active'";
-                                $select_all_doctors = mysqli_query($db, $query);
+                                $select_all_doctors = mysqli_query($db, $query);//performs query against a database
                                 if ($result = $select_all_doctors) {
-                                    $rowcount = mysqli_num_rows($result);
+                                    $rowcount = mysqli_num_rows($result);//function to return the number of rows in a result set.
                                 ?>
                  <h3>Total:<?php echo $rowcount; ?></h3>
             </th>

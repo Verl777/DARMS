@@ -78,7 +78,8 @@
             <input type="radio" value="Male" name="gender"> Male
             <input type="radio" value="Female" name="gender"> Female<br>
             <label for="date"><b>Date:</b></label>
-            <input type="date" id="date" name="regdate"><br>
+            <input type="text" id="date" name="regdate" value="<?php $date = date('d/m/y');
+                                                                echo $date; ?>"><br>
             <button type="submit" name="create_patient" class="registerbtn">Register</button>
         </form>
     </div>

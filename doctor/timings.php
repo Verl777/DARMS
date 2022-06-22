@@ -69,14 +69,14 @@
         <div class="timings">
             <label class="label1">From</label>
             <div class="details">
-                <input class="form-control" type="time" name="starttime" id="starttime"></td>
+                <input class="form-control" type="text" name="starttime" id="starttime"></td>
             </div>
         </div>
 
         <div class="timings">
             <label class="label1">To</label>
             <div class="details">
-                <input class="form-control" type="time" name="endtime" id="endtime">
+                <input class="form-control" type="text" name="endtime" id="endtime">
             </div>
         </div>
         <div class="timings">

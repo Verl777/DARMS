@@ -71,15 +71,14 @@
         <button onclick="history.back()" class="back">Go Back</button>
         <h1 style="text-align:center;">Patient Registration Form</h1>
         <form action="patientreg.php" method="post" onsubmit="return validatepatient()">
-            <?php echo display_error_validate(); ?>
             <label> <b>Name</b></label>
-            <input type="text" name="name" id="name" placeholder="name" size="15" />
+            <input type="text" name="name" id="name" placeholder="name" />
             <label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="email" id="email">
             <label>
                 <b>Mobile : </b>
             </label>
-            <input type="text" name="phone" placeholder="phone no." size="10" />
+            <input type="text" name="phone" placeholder="phone no." id="mobile" />
             <!-- <label> <label for="weight">Weight in KG:</label>
                 <input type="text" name="weight"> -->
             <b>Gender : </b>
@@ -100,6 +99,7 @@
             var email = document.getElementById("email");
             var name = document.getElementById("name");
             var dob = document.getElementById("birthday");
+            var mobile = document.getElementById("mobile");
 
 
 
@@ -121,21 +121,29 @@
                 document.getElementById("email").focus();
                 return false;
             }
-            if (birthday.value.length != "") {
-                var now = parseInt(new Date().toISOString().slice(0, 10).replace(/-/g, ''));
-                var dob = parseInt(document.getElementById("birthday").toISOString().slice(0, 10).replace(/-/g, ''));
-                // var dob = year * 10000 + month * 100 + day * 1; // Coerces strings to integers
-                if (now - dob > 120000) {
-                    alert("Age gap not allowed");
-                }
-
-                return now - dob > 120000;
+            if (dob.value == "") {
+                window.alert("DOB cannot be empty");
+                document.getElementById("birthday").focus();
+                return false;
             }
+            var today = new Date(); //Todays Date
+            var givendt = new Date(); //variable for getting the entered date
+            //The function setFullYear Set the year (optionally also month and day yyyy,mm,dd)
+            //Comparing the dates
+            //check if the given date is greater than today's date
+            if (givendt > today) {
+                alert("Date of Birth cannot be greater than today");
+                document.getElementById("birthday").focus();
+                return false;
+            }
+            //check if the mobile number is empty
+            if (mobile.value == "") {
+                window.alert("Mobile number cannot be empty");
+                document.getElementById("birthday").focus();
+                return false;
+            }
+            
         }
-
-        // function isDate12orMoreYearsOld(day, month, year) {
-        //     return new Date(year + 12, month - 1, day) <= new Date();
-        // }
     </script>
 </body>
 

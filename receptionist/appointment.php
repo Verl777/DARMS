@@ -91,37 +91,18 @@
                     <?php } ?>
                 </select>
             </div>
-            <!-- <div class="contact">
-                <label for="contact">
-                    Contact
-                </label>
-                <div>
-                    <input type="tel" id="contact" name="contact" placeholder="123">
-                </div>
-            </div> -->
-            <!---->
             <div class="date">
                 <label for="date">
                     Date
                 </label>
                 <div>
-                    <input type="date" id="date" name="date">
+                    <input type="text" id="date" name="date">
                 </div>
             </div>
             <div>
                 <label for="appt">Time</label>
-                <input type="time" id="appt" name="time">
+                <input type="text" id="appt" name="time">
             </div>
-            <!---->
-            <!--<div class="time">
-                <label class="time">
-                    Time
-                </label>
-                <div>
-                    <input type="time" id="appt" name="appt">
-                </div>
-            </div>-->
-            <!---->
             <div class="select">
                 <label>Select Doctor</label>
                 <select name="selectdoctor" class="text-input">
@@ -146,11 +127,16 @@
     </form>
     <script>
         function checkDate() {
-            var selectedText = document.getElementById('date').value;
-            var selectedDate = new Date(selectedText);
-            var now = new Date();
-            if (selectedDate < now) {
-                alert("Date must be in the future");
+            var date = document.getElementById("date");
+            var appt = document.getElementById("appt");
+            if (date.value == "") {
+                window.alert("Date cannot be empty");
+                document.getElementById("date").focus();
+                return false;
+            }
+            if (appt.value == "") {
+                window.alert("Time cannot be empty");
+                document.getElementById("appt").focus();
                 return false;
             }
         }

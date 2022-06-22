@@ -12,10 +12,10 @@ $email    = "";
 $username = "";
 //check functions of arrays in php
 $errors   = array();
-// $user_type    = "";
 
 
 // call the register() function if register_btn is clicked
+//isset function  takes any variable you want to use and checks to see if it has been set. 
 if (isset($_POST['register'])) {
     register();
 }
@@ -26,10 +26,8 @@ function register()
     // call these variables with the global keyword to make them available in function
     global $db, $errors, $email, $username;
 
-    // receive all input values from the form. Call the e() function
-    // research on escape functions
+    // receive all input values from the form
     // defined below to escape form values
-    // research on global $_POST
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -77,53 +75,41 @@ function register()
         if ($user_role == "receptionist") {
             $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
 			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
-            mysqli_query($db, $query);
+            mysqli_query($db, $query);//performs a query against a database
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($db);
+            $logged_in_user_id = mysqli_insert_id($db);//returns the id  from the last query.
 
             $_SESSION['user'] = getReceptionistById($logged_in_user_id); // put logged in user in session
             $_SESSION['success']  = "You have successfully logged in as a receptionist!";
-            header('location: receptionist/dashboard.php');
+            header('location: receptionist/dashboard.php');//sends a raw HTTP header to a client.
         }
-        // insert nurse
-        if ($user_role == "nurse") {
-            $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
-			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
-            mysqli_query($db, $query);
-
-            // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($db);
-
-            $_SESSION['user'] = getNurseById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You have successfully logged in as a nurse!";
-            header('location: nurse/dashboard.php');
-        }
+      
         // insert doctor
         if ($user_role == "doctor") {
             $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
 			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
-            mysqli_query($db, $query);
+            mysqli_query($db, $query);//performs a query against a database
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($db);
+            $logged_in_user_id = mysqli_insert_id($db);//returns the id  from the last query.
 
             $_SESSION['user'] = getDoctorById($logged_in_user_id); // put logged in user in session
             $_SESSION['success']  = "You have successfully logged in as a doctor!";
-            header('location: doctor/dashboard.php');
+            header('location: doctor/dashboard.php');//sends a raw HTTP header to a client.
         }
         // inserting the therapist
         if ($user_role == "therapist") {
             $query = "INSERT INTO users (fullname,user_name,user_mobile,user_email,user_password,createdat,user_role,gender,status) 
 			VALUES('$fullname', '$username','$phone_number','$email','$password',now(),'$user_role','$gender','$status')";
-            mysqli_query($db, $query);
+            mysqli_query($db, $query);//performs a query against a database
 
             // get id of the created user
-            $logged_in_user_id = mysqli_insert_id($db);
+            $logged_in_user_id = mysqli_insert_id($db);//returns the id  from the last query.
 
             $_SESSION['user'] = getTherapistById($logged_in_user_id); // put logged in user in session
             $_SESSION['success']  = "You have successfully logged in as a therapist!";
-            header('location: therapist/dashboard.php');
+            header('location: therapist/dashboard.php');//sends a raw HTTP header to a client.
         }
     }
 }
@@ -134,29 +120,20 @@ function getReceptionistById($id)
 {
     global $db;
     $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($db, $query);
+    $result = mysqli_query($db, $query);//performs a query against a database
 
-    $user = mysqli_fetch_assoc($result);
+    $user = mysqli_fetch_assoc($result);//fetches a result row as an associative array.
     return $user;
 }
-//get  nurse by id
-function getNurseById($id)
-{
-    global $db;
-    $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($db, $query);
 
-    $user = mysqli_fetch_assoc($result);
-    return $user;
-}
 //get doctor by id
 function getDoctorById($id)
 {
     global $db;
     $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($db, $query);
+    $result = mysqli_query($db, $query);//performs a query against a database
 
-    $user = mysqli_fetch_assoc($result);
+    $user = mysqli_fetch_assoc($result);//fetches a result row as an associative array.
     return $user;
 }
 //get  therapist by id
@@ -164,9 +141,9 @@ function getTherapistById($id)
 {
     global $db;
     $query = "SELECT * FROM users WHERE user_id=" . $id;
-    $result = mysqli_query($db, $query);
+    $result = mysqli_query($db, $query);//performs a query against a database
 
-    $user = mysqli_fetch_assoc($result);
+    $user = mysqli_fetch_assoc($result);//fetches a result row as an associative array.
     return $user;
 }
 
@@ -204,7 +181,7 @@ function isLoggedIn()
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['user']);
-    header("location: index.php");
+    header("location: index.php");//sends a raw HTTP header to a client.
 }
 // call the login() function if register_btn is clicked
 if (isset($_POST['submit'])) {
@@ -244,7 +221,7 @@ function login()
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "You are now logged in as an Administrator!";
-                header('location: admin/dashboard.php');
+                header('location: admin/dashboard.php');//sends a raw HTTP header to a client.
             } else {
                 array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
@@ -257,24 +234,12 @@ function login()
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "Successfully logged in as a receptionist!";
-                header('location: receptionist/dashboard.php');
+                header('location: receptionist/dashboard.php');//sends a raw HTTP header to a client.
             } else {
                 array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
         }
-        // login nurse
-        if ($user_role == "nurse") {
-            $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
-            $results = mysqli_query($db, $query);
-            if (mysqli_num_rows($results) == 1) {
-                $logged_in_user = mysqli_fetch_assoc($results);
-                $_SESSION['user'] = $logged_in_user;
-                $_SESSION['success']  = "You have successfully logged in as a nurse";
-                header('location: nurse/dashboard.php');
-            } else {
-                array_push($errors, "Wrong username/password combination or you may not be a registered user!");
-            }
-        }
+       
         // login doctor
         if ($user_role == "doctor") {
             $query = "SELECT * FROM users WHERE user_name='$username' AND user_password='$password' LIMIT 1";
@@ -283,7 +248,7 @@ function login()
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "You are successfully logged in!";
-                header('location: doctor/dashboard.php');
+                header('location: doctor/dashboard.php');//sends a raw HTTP header to a client.
             } else {
                 array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }
@@ -296,7 +261,7 @@ function login()
                 $logged_in_user = mysqli_fetch_assoc($results);
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success']  = "You are now logged in";
-                header('location: therapist/dashboard.php');
+                header('location: therapist/dashboard.php');//sends a raw HTTP header to a client.
             } else {
                 array_push($errors, "Wrong username/password combination or you may not be a registered user!");
             }

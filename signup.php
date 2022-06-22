@@ -1,13 +1,11 @@
-<?php include "includes/db.php"; ?>
+ <?php include "includes/db.php"; ?><!--//takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement. -->
 <?php include "includes/functions.php"; ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title> Registration Form</title>
     <link rel="stylesheet" href="style1.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -49,22 +47,13 @@
                             <option value="receptionist">Receptionist</option>
                             <option value="doctor">Doctor</option>
                             <option value="therapist">Therapist</option>
-                            <option value="nurse">Nurse</option>
                         </select>
                     </div>
                 </div>
-                <div class="gender-details">
-                    <span class="gender-title">Gender:</span>
+                <div class="input-box">
+                    <span class="details">Gender:</span>
 
-                    <!-- <div class="category">
-                        <label for="gender">
-                            <input type="radio" name="gender" id="gender">Male</input>
-                        </label>
-                        <label for="gender">
-                            <input type="radio" name="gender" id="gender">Female</input>
-                        </label>
-                    </div> -->
-                    <select class="gender" name="gender" id="gender">
+                    <select class="gender" name="gender" id="gender" style="width: 47%;height:45px;">
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -73,14 +62,14 @@
                 <div class="input-box">
                     <span class="details">Status:</span>
 
-                    <select class="status" name="status" id="user_status">
+                    <select class="status" name="status" id="user_status" style="width: 47%;height:45px;">
                         <option value="">Status</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>
                 </div>
                 <div class="button">
-                    <button type="submit" name="register">Register</button>
+                    <button type="submit" name="register" style="height:30px ;width:80px;font-weight:bold;background:#6BC3F9;margin-left:300px;border-radius:8px;">Register</button>
                 </div>
             </form>
         </div>
@@ -88,11 +77,11 @@
     <script>
         function validateform() {
             //Email validation
-            var email = document.getElementById("email");
-            var fullname = document.getElementById("fullname");
-            var phonenumber = document.getElementById("phonenumber");
-            var username = document.getElementById("username");
-            var password = document.getElementById("password_1");
+            var email = document.getElementById("email");// method returns an element with a specified email
+            var fullname = document.getElementById("fullname");//method returns an element with a specified fullname
+            var phonenumber = document.getElementById("phonenumber");// method returns an element with a specified value phonenumber
+            var username = document.getElementById("username");// method returns an element with a specified username
+            var password = document.getElementById("password_1");//method returns an element with a specified psddword
             var confirmpassword = document.getElementById("password_2");
             var gender = document.getElementById("gender");
             var userrole = document.getElementById("user_role");
@@ -128,12 +117,15 @@
                 document.getElementById("email").focus();
                 return false;
             }
+            //indexof () method returns the first index at which a given element can be found in the array, or -1 if it is not present.
             if (email.value.length == 0 || email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1) {
                 alert("Please include an @ and . in  your email address");
                 document.getElementById("email").focus();
                 return false;
             }
             //Password
+            // ([]-Match anything that’s contained inside the bracket)
+            //?! positive lookahead
             var Chars = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
             if (password.value == "" || !Chars.test(password.value)) {
                 window.alert("Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.");

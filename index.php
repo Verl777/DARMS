@@ -4,9 +4,7 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.png" type="image/gif" sizes="16x16">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image" sizes="16x16">
     <title>DRUG ADDICTS' REHABILITATION MANAGEMENT SYSTEM | Login Page</title>
 
 </head>
@@ -34,7 +32,7 @@
             </select><br />
             <button class="button" name="submit">LOGIN</button>
             <div class="psw">
-                <h1 style="margin-top:10px;"><a id="psw" href="#">Forgot Password?</a></h1>
+                <h1 style="margin-top:10px;"><a id="psw" href="resetpsw.php">Forgot Password?</a></h1>
             </div>
             <div class="signup">Don't have an account?
                 <h1><a id="signup" href="signup.php">Sign Up</a></h1>

@@ -33,11 +33,12 @@
             background-color: #899499;
             color: white;
         }
-        .edit{
-            background:#10AFEF ;
+
+        .edit {
+            background: #10AFEF;
             color: #fff;
             padding: 5px;
-            text-decoration:none ;
+            text-decoration: none;
             border-radius: 5px;
         }
     </style>

@@ -89,7 +89,7 @@
                 </tr>
                 <tr>
                     <td class="table-d">Date :<br></td>
-                    <td><input name="date" type="date" id="date"><br></td>
+                    <td><input name="date" type="text" id="date"><br></td>
                 </tr>
                 <tr>
                     <td class="table-d">Patient Activity:<br></td>

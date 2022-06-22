@@ -1,24 +1,14 @@
     <!-- sidebar area -->
     <div class="aside">
-    <style>
-            summary {
-                font-size: 20px;
-                color: #fff;
-                margin-bottom: 10px;
-            }
-           
 
-        </style>
         <ul class="links">
             <li><a href="dashboard.php" class="aside_links">Home</a></li>
-            <details class="app">
-                <summary>Timings</summary>
+            <li style="color: white; font-size:20px;">Timings
                 <ul>
                     <li><a href="t_timings.php" class="aside_links">Add</a></li>
                     <li><a href="viewtime.php" class="aside_links">View</a></li>
                 </ul>
-            </details>
-            
+            </li>
             <li><a href="sessions.php" class="aside_links">Sessions</a></li>
             <li><a href="activity.php" class="aside_links">Assign activity</a></li>
             <li><a href="patients.php" class="aside_links">Patients</a></li>

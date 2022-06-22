@@ -83,8 +83,7 @@ form .input-box span.details {
     transition: all 0.3s ease;
 }
 
-.user-details .input-box input:focus,
-.user-details .input-box input:valid {
+.user-details .input-box input:focus {
     border-color: #9b59b6;
 }
 
@@ -105,23 +104,6 @@ form .category label {
     align-items: center;
     cursor: pointer;
 }
-
-
-/* form #gender {
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background: #d9d9d9;
-    border: 5px solid transparent;
-    transition: all 0.3s ease;
-} */
-
-
-/* #gender:checked~.category label {
-    background: #9b59b6;
-    border-color: #d9d9d9;
-} */
 
 form .button {
     height: 45px;
@@ -145,30 +127,4 @@ form .button input {
 form .button input:hover {
     /* transform: scale(0.99); */
     background: rgb(51, 175, 247);
-}
-
-@media(max-width: 584px) {
-    .container {
-        max-width: 100%;
-    }
-    form .user-details .input-box {
-        margin-bottom: 15px;
-        width: 100%;
-    }
-    form .category {
-        width: 100%;
-    }
-    .content form .user-details {
-        max-height: 300px;
-        overflow-y: scroll;
-    }
-    .user-details::-webkit-scrollbar {
-        width: 5px;
-    }
-}
-
-@media(max-width: 459px) {
-    .container .content .category {
-        flex-direction: column;
-    }
 }

@@ -46,35 +46,21 @@ function addPatient()
     if (empty($patient_address)) {
         array_push($errors, "patient_address required");
     }
-    // validate date
-    $todaysDate = (date('Y') - 12) . '/' . date('m/d');
-    if (strtotime('/"', '-', $Date_of_birth) > strtotime('/"', '-', $todaysDate)) {
-        // echo "$todaysDate, cannot choose from passed dates";
-        array_push($errors, "cannot register less than 12 years");
-        // $blnValidated = false;
-    } else {
-        // $date_validate = str_replace('/"', '-', $Date_of_birth);
-        // $newDate = date("Y/m/d", strtotime($date_validate));
-        // $today = date("Y" - 12);
-        // // echo var_dump($today);
-
-        // if ($newDate > $today) {
-        //     array_push($errors, "cannot register less than 12 years");
-        // }
+   
 
 
-        // register patient if there are no errors in the form
-        if (count($errors) == 0) {
-            // global $connection;
-            // insert patient
-            $query = "INSERT INTO patient (patient_name, patient_email, patient_mobile, patient_gender, Date_of_birth, guardian, patient_address, createdat) 
+    // register patient if there are no errors in the form
+    if (count($errors) == 0) {
+        // global $connection;
+        // insert patient
+        $query = "INSERT INTO patient (patient_name, patient_email, patient_mobile, patient_gender, Date_of_birth, guardian, patient_address, createdat) 
         VALUES('$patient_name', '$patient_email', '$patient_mobile', '$patient_gender', '$Date_of_birth', '$guardian', '$patient_address', now())";
-            mysqli_query($connection, $query);
+        mysqli_query($connection, $query);
 
-            header('location: patients.php');
-        }
+        header('location: patients.php'); //sends a raw HTTP header to a client.
     }
 }
+
 
 function display_error_validate()
 {
@@ -129,6 +115,6 @@ function confirm()
     VALUES('$doctorid', '$patientid', '$appointment_date','$appointment_time', now())";
         mysqli_query($connection, $sql);
 
-        header('location: appointments.php');
+        header('location: appointments.php'); //sends a raw HTTP header to a client.
     }
 }
